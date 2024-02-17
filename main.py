@@ -3,8 +3,6 @@ from flask_session.__init__ import Session
 from datetime import timedelta
 from Login.login import Check_login
 app = Flask(__name__)
-
-app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -62,6 +60,13 @@ def App_main_page():
         return render_template("/Home/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
 #--------------------------------------------------------------------
 ########################## End Home
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+########################## Assets
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+########################## End Assets
 #--------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=1000)

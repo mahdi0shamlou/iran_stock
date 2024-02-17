@@ -9,10 +9,10 @@
                                         <div class="nk-block-between">
                                             <div class="nk-block-head-content">
                                                 <h3 class="nk-block-title page-title">
-                                                     IT
+                                                     {{user}}
                                                 </h3>
                                                 <div class="nk-block-des text-soft">
-                                                    <p>{{user}} خوش اومدی </p>
+                                                    <p> خوش اومدی </p>
                                                 </div>
                                             </div>
                                             <!-- .nk-block-head-content -->
@@ -23,33 +23,10 @@
                                                         <ul class="nk-block-tools g-3">
                                                             <li>
                                                                 <div class="dropdown">
-                                                                    <!--
-                                                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown">
-                                                                        <em class="d-none d-sm-inline icon ni ni-calender-date"></em><span>30 روز <span class="d-none d-md-inline">گذشته</span></span>
-                                                                        <em class="dd-indc icon ni ni-chevron-right"></em>
-                                                                    </a>
-                                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                                        <ul class="link-list-opt no-bdr">
-                                                                            <li>
-                                                                                <a href="#"><span>30 روز گذشته</span></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="#"><span>6 ماه گذشته</span></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="#"><span>1 سال گذشته</span></a>
-                                                                            </li>
-                                                                        </ul>
 
-                                                                    </div>
-                                                                    -->
                                                                 </div>
                                                             </li>
-                                                            <!--
-                                                            <li class="nk-block-tools-opt">
-                                                                <a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>گزارش ها</span></a>
-                                                            </li>
-                                                            -->
+
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -71,41 +48,26 @@
                                                         <div class="card-title-group">
                                                             <div class="card-title">
                                                                 <h6 class="title">
-                                                                    <span class="me-2">فاکتور ها</span>
-                                                                    <a href="/IT/Invoice" class="link d-none d-sm-inline">مشاهده لیست</a>
+                                                                    <span class="me-2">معاملات</span>
+                                                                    <a href="/Home/Trade" class="link d-none d-sm-inline">مشاهده لیست</a>
                                                                 </h6>
                                                             </div>
-                                                            <!--
-                                                            <div class="card-tools">
-                                                                <ul class="card-tools-nav">
-                                                                    <li>
-                                                                        <a href="#"><span>پرداخت شده</span></a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#"><span>در انتظار</span></a>
-                                                                    </li>
-                                                                    <li class="active">
-                                                                        <a href="#"><span>همه</span></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            -->
                                                         </div>
                                                     </div>
                                                     <div class="card-inner p-0 border-top">
                                                         <div class="nk-tb-list nk-tb-orders">
                                                             <div class="nk-tb-item nk-tb-head">
                                                                 <div class="nk-tb-col">
-                                                                    <span>شماره فاکتور</span>
+                                                                    <span>شماره معامله</span>
                                                                 </div>
                                                                 <div class="nk-tb-col tb-col-sm">
-                                                                    <span>خریدار</span>
+                                                                    <span>نام دارایی</span>
                                                                 </div>
                                                                 <div class="nk-tb-col tb-col-md">
-                                                                    <span>فروشنده</span>
+                                                                    <span>سود حاصله</span>
                                                                 </div>
                                                                 <div class="nk-tb-col tb-col-lg">
-                                                                    <span>تاریخ</span>
+                                                                    <span>نوع معامله</span>
                                                                 </div>
                                                                 <div class="nk-tb-col"><span>وضعیت</span></div>
 
@@ -124,7 +86,7 @@
                                                     <div class="card-inner border-bottom">
                                                         <div class="card-title-group">
                                                             <div class="card-title">
-                                                                <h6 class="title">تیکت های تعیین وضعیت نشده</h6>
+                                                                <h6 class="title">دارایی ها محبوب</h6>
                                                             </div>
                                                             <div class="card-tools">
                                                                 <ul class="card-tools-nav">
@@ -140,8 +102,6 @@
                                                         </div>
                                                     </div>
                                                     <ul class="nk-activity">
-
-
                                                     </ul>
                                                 </div>
                                                 <!-- .card -->
@@ -172,79 +132,21 @@
                                     </li>
                                     <!-- .nk-menu-heading -->
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Invoice" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/Home/Trade" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
-                                            <span class="nk-menu-text">فاکتور ها</span>
+                                            <span class="nk-menu-text">معاملات</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                                <a href="/Home/Trade" class="nk-menu-link"><span class="nk-menu-text">لیست معاملات</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
-                                            </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                                <a href="/Home/Trade_Favorite" class="nk-menu-link"><span class="nk-menu-text">لیست دارایی های محبوب</span></a>
                                             </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Product_list" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb "></em></span>
-                                            <span class="nk-menu-text">محصولات</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Product_list" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
-                                            </li>
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Customers" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
-                                            <span class="nk-menu-text">مشتریان</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Customers" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان سایت</span></a>
-                                            </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Customers_G" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان غیر</span></a>
-                                            </li>
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/getdata" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
-                                            <span class="nk-menu-text">جمع آوری دیتا</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/getdata" class="nk-menu-link"><span class="nk-menu-text">جمع آوری دیتا</span></a>
-                                            </li>
 
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/getdata_update" class="nk-menu-link"><span class="nk-menu-text">آپدیت دیتا</span></a>
-                                            </li>
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Tickets" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
-                                            <span class="nk-menu-text">تیکت ها</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
-                                            </li>
-
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
 
                                     <!-- .nk-menu-item -->
 
