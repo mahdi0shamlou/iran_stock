@@ -6,6 +6,8 @@ def Check_login(user, password):
         session['Password'] = password
         session['Active'] = 1
         session['Path'] = 'Home'
+        session['email'] = 'Admin@gmail.com'
+
         return redirect('/')
     else:
         return redirect('/Login')

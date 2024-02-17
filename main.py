@@ -27,14 +27,14 @@ def internal_error(error):
 #--------------------------------------------------------------------
 ########################## Login
 #--------------------------------------------------------------------
-@app.route("/Login", methods=["POST", "GET"])
+@app.route("/Login/", methods=["POST", "GET"])
 def Login():
     if not session.get("Username"):
         return render_template("/Login/index.html")
     else:
         path = session.get('Path')
         return redirect(f"/{path}")
-@app.route("/Login_check", methods=["POST", "GET"])
+@app.route("/Login_check/", methods=["POST", "GET"])
 def Login_check():
     if request.args.get("username") is None or request.args.get("pass") is None:
         return redirect("/Login")
@@ -43,13 +43,25 @@ def Login_check():
         password = request.args.get("pass")
         Check_login_resualt = Check_login(user, password)
         return Check_login_resualt
-@app.route("/logout")
+@app.route("/logout/")
 def logout():
     session["Username"] = None
     return redirect("/")
 #--------------------------------------------------------------------
 ########################## End Login
 #--------------------------------------------------------------------
-
+#--------------------------------------------------------------------
+########################## Home
+#--------------------------------------------------------------------
+@app.route("/Home/", methods=["POST", "GET"])
+def App_main_page():
+    if not session.get("Username"):
+        return render_template("/Login/index.html")
+    else:
+        path = session.get('Path')
+        return render_template("/Home/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+#--------------------------------------------------------------------
+########################## End Home
+#--------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=1000)
