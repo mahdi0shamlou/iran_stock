@@ -2,3 +2,4 @@ flask
 pandas
 numpy
 tsetmc-api
+mysql-connector-python
