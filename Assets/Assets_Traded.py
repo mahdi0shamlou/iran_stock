@@ -3,6 +3,44 @@ from mysql.connector import connect, Error
 import mysql.connector
 from tsetmc_api.symbol import Symbol
 day_ago = 30
+def Get_special_Trade(ids):
+    try:
+        connection = mysql.connector.connect(host="localhost",
+                                             user='root',
+                                             password='ya mahdi',
+                                             database="iran_socket")
+        cursor = connection.cursor()
+        sql_select_query = """select * from events WHERE id = %s"""
+        # set variable in query
+        cursor.execute(sql_select_query, (ids,))
+        # fetch result
+        record = cursor.fetchall()
+        list_lab = []
+        for i in range(0, len(record)):
+            list_lab_lab = []
+            list_lab_lab.append(record[i][0])
+            list_lab_lab.append(record[i][1])
+            list_lab_lab.append(record[i][2])
+            list_lab_lab.append(record[i][3])
+            list_lab_lab.append(record[i][4])
+            list_lab_lab.append(record[i][5])
+            list_lab_lab.append(int((record[i][5]/record[i][4])*100))
+
+            if record[i][3] == 'buy':
+                list_lab_lab.append(record[i][4]+record[i][5])
+            else:
+                list_lab_lab.append(record[i][4]-record[i][5])
+            #print()
+            list_lab.append(list_lab_lab)
+        print(list_lab)
+    except mysql.connector.Error as error:
+        print("Failed to get record from MySQL table: {}".format(error))
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+            return list_lab
 def Get_Symbol_History(symbol_id):
     symbol = Symbol(symbol_id=symbol_id)
     price_overview = symbol.get_daily_history()
@@ -77,7 +115,6 @@ def Insert_Trade_History(symbol, side):
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
-
 def Trade_Update():
     try:
         connection = mysql.connector.connect(host="localhost",
@@ -135,6 +172,22 @@ def Trade_Delet(id):
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
+def Trade_History_Chart(id):
+    Trade_Update()
+    Trade = Get_special_Trade(id)
+    price_overview = Get_Symbol_History(Trade[0][1])
+    profit_change_list = []
+    if Trade[0][3] == 'buy':
+        for i in range(day_ago,-1,-1):
+            profits = price_overview[i]['close']-Trade[0][4]
+            profit_change_list.append([(day_ago-i), ((profits/Trade[0][4])*100)])
+    else:
+        for i in range(day_ago,0,-1):
+            profits = Trade[0][4] - price_overview[i]['close']
+            profit_change_list.append([(day_ago-i), ((profits/Trade[0][4])*100)])
+    return profit_change_list
+
+#Trade_History_Chart(10)
 #Get_Trade_History()
 #Trade_Update()
 #Insert_Trade_History(symbol='14079693677610396', side='sell')
