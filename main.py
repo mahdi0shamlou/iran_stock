@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, session, json
 from flask_session.__init__ import Session
 from datetime import timedelta
 from Login.login import Check_login
+from Assets.Assets_Traded import Get_Trade_History
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -57,7 +58,8 @@ def App_main_page():
         return render_template("/Login/index.html")
     else:
         path = session.get('Path')
-        return render_template("/Home/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        Get_Trade_History_list = Get_Trade_History()
+        return render_template("/Home/index.html", Get_Trade_History_list=Get_Trade_History_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
 #--------------------------------------------------------------------
 ########################## End Home
 #--------------------------------------------------------------------
