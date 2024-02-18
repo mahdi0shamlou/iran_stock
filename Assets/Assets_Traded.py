@@ -2,6 +2,7 @@ import datetime
 from mysql.connector import connect, Error
 import mysql.connector
 from tsetmc_api.symbol import Symbol
+
 def Get_Symbol_History(symbol_id):
     symbol = Symbol(symbol_id=symbol_id)
     price_overview = symbol.get_daily_history()
@@ -28,6 +29,13 @@ def Get_Trade_History():
             list_lab_lab.append(record[i][3])
             list_lab_lab.append(record[i][4])
             list_lab_lab.append(record[i][5])
+            list_lab_lab.append(int((record[i][5]/record[i][4])*100))
+
+            if record[i][3] == 'buy':
+                list_lab_lab.append(record[i][4]+record[i][5])
+            else:
+                list_lab_lab.append(record[i][4]-record[i][5])
+            #print()
             list_lab.append(list_lab_lab)
         print(list_lab)
     except mysql.connector.Error as error:
@@ -45,6 +53,11 @@ def Insert_Trade_History(symbol, side):
             profits = price_overview[0]['close'] - price_overview[30]['close']
         else:
             profits = price_overview[30]['close'] - price_overview[0]['close']
+            print(price_overview[30]['close'])
+            print(price_overview[0]['close'])
+
+
+
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='ya mahdi',
@@ -64,8 +77,8 @@ def Insert_Trade_History(symbol, side):
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
-            return 'list_lab'
-    pass
+
+
 Get_Trade_History()
-#Insert_Trade_History(symbol='14079693677610396', side='buy')
+#Insert_Trade_History(symbol='14079693677610396', side='sell')
 #Get_Symbol_History('14079693677610396')

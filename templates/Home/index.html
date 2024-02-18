@@ -54,6 +54,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="card-inner p-0 border-top">
                                                         <div class="nk-tb-list nk-tb-orders">
                                                             <div class="nk-tb-item nk-tb-head">
@@ -61,22 +62,64 @@
                                                                     <span>شماره معامله</span>
                                                                 </div>
                                                                 <div class="nk-tb-col tb-col-sm">
-                                                                    <span>نام دارایی</span>
+                                                                    <span>نام سهم</span>
                                                                 </div>
                                                                 <div class="nk-tb-col tb-col-md">
-                                                                    <span>سود حاصله</span>
+                                                                    <span>قیمت خرید</span>
                                                                 </div>
                                                                 <div class="nk-tb-col tb-col-lg">
-                                                                    <span>نوع معامله</span>
+                                                                    <span>قیمت فعلی</span>
                                                                 </div>
-                                                                <div class="nk-tb-col"><span>وضعیت</span></div>
-
+                                                                <div class="nk-tb-col"><span>درصد سود</span></div>
+                                                                <div class="nk-tb-col"><span>نوع معامله</span></div>
                                                                 <div class="nk-tb-col"><span>&nbsp;</span></div>
                                                             </div>
+                                                            {%for i in Get_Trade_History_list%}
+                                                            <div class="nk-tb-item">
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-lead"><a href="/ACC/Invoice_details?P_ID={{i[0]}}">#{{i[0]}}</a></span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <div class="user-card">
+                                                                        <div class="user-name">
+                                                                            <span class="tb-lead">{{i[1]}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span class="tb-sub">{{i[4]}}</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span class="tb-sub">{{i[7]}}</span>
+                                                                </div>
+                                                                {%if i[6] < 0%}
+                                                                    <div class="nk-tb-col">
+                                                                        <span class="tb-sub"><span class="badge rounded-pill bg-danger">{{i[6]*-1}}</span></span>
+                                                                    </div>
+                                                                {%else%}
+                                                                    <div class="nk-tb-col">
+                                                                        <span class="tb-sub"><span class="badge rounded-pill bg-success">{{i[6]}}</span></span>
+                                                                    </div>
+                                                                {%endif%}
+                                                                <div class="nk-tb-col tb-col-lg">
 
+                                                                    <span class="tb-sub"><span class="badge bg-outline-dark">{{i[3]}}</span></span>
+                                                                </div>
+                                                                <div class="nk-tb-col nk-tb-col-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                                                            <ul class="link-list-plain">
+                                                                                <li><a href="/ACC/Invoice_details?P_ID={{i[0]}}">مشاهده</a></li>
+                                                                                <li><a href="/ACC/invoice_print_it?id={{i[0]}}">چاپ</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {%endfor%}
                                                         </div>
                                                     </div>
-
                                                 </div>
                                                 <!-- .card -->
                                             </div>
