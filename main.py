@@ -60,6 +60,17 @@ def App_main_page():
         path = session.get('Path')
         Get_Trade_History_list = Get_Trade_History()
         return render_template("/Home/index.html", Get_Trade_History_list=Get_Trade_History_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+
+
+@app.route("/Home/Trade_update/", methods=["POST", "GET"])
+def App_Trade_update():
+    if not session.get("Username"):
+        return render_template("/Login/index.html")
+    else:
+        path = session.get('Path')
+
+        return redirect('/Home')
+
 #--------------------------------------------------------------------
 ########################## End Home
 #--------------------------------------------------------------------
