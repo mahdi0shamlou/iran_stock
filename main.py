@@ -3,7 +3,7 @@ from flask_session.__init__ import Session
 from datetime import timedelta
 from Login.login import Check_login
 from Assets.Assets_Traded import Get_Trade_History
-from Assets.Assets_Traded import Trade_Update, Trade_Delet, Trade_History_Chart
+from Assets.Assets_Traded import Trade_Update, Trade_Delet, Trade_History_Chart, Insert_Trade_History
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -92,6 +92,21 @@ def App_Trade_charts():
             path = session.get('Path')
             Get_Trade_History_chart = Trade_History_Chart(ids)
             return render_template("/Trade/Chart.html", Get_Trade_History_chart=Get_Trade_History_chart, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/Home/Add_New_Trade", methods=["POST", "GET"])
+def App_Trade_new():
+    if not session.get("Username"):
+        return render_template("/Login/index.html")
+    else:
+        code = request.args.get('code')
+        side = request.args.get('side')
+        if side is None or code is None:
+            path = session.get('Path')
+            return render_template("/Trade/Add_new.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+
+            Insert_Trade_History(symbol=code, side=side)
+            return redirect('/Home')
+
 #--------------------------------------------------------------------
 ########################## End Home
 #--------------------------------------------------------------------

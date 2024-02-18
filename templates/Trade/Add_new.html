@@ -1,18 +1,18 @@
 {% extends './base/base.html' %}
 {% block bodys %}
 
-                        <div class="nk-content">
-                            <div class="container-fluid">
+<div class="nk-content">
+    <div class="container-fluid">
                             <div class="nk-content-inner">
                                 <div class="nk-content-body">
                                     <div class="nk-block-head nk-block-head-sm">
                                         <div class="nk-block-between">
                                             <div class="nk-block-head-content">
                                                 <h3 class="nk-block-title page-title">
-                                                     {{user}}
+                                                   معامله جدید
                                                 </h3>
                                                 <div class="nk-block-des text-soft">
-                                                    <p> خوش اومدی </p>
+                                                    <p>{{user}}  </p>
                                                 </div>
                                             </div>
                                             <!-- .nk-block-head-content -->
@@ -23,10 +23,33 @@
                                                         <ul class="nk-block-tools g-3">
                                                             <li>
                                                                 <div class="dropdown">
+                                                                    <!--
+                                                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown">
+                                                                        <em class="d-none d-sm-inline icon ni ni-calender-date"></em><span>30 روز <span class="d-none d-md-inline">گذشته</span></span>
+                                                                        <em class="dd-indc icon ni ni-chevron-right"></em>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <ul class="link-list-opt no-bdr">
+                                                                            <li>
+                                                                                <a href="#"><span>30 روز گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>6 ماه گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>1 سال گذشته</span></a>
+                                                                            </li>
+                                                                        </ul>
 
+                                                                    </div>
+                                                                    -->
                                                                 </div>
                                                             </li>
-
+                                                            <!--
+                                                            <li class="nk-block-tools-opt">
+                                                                <a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>گزارش ها</span></a>
+                                                            </li>
+                                                            -->
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -42,53 +65,37 @@
                                             <!-- .col -->
 
                                             <!-- .col -->
-                                            <div class="col-xxl-12">
-                                                <div class="card card-bordered card-full">
-                                                    <div class="card-inner">
-                                                        <div class="card-title-group">
-                                                            <div class="card-title">
-                                                                <h6 class="title">
-                                                                    <span class="me-2">نمودار تغیرات درصد سود</span>
+                                            <div class="col-xxl-8">
 
-                                                                </h6>
+                                            <form class="form-group" method="get" action="/Home/Add_New_Trade">
+                                                 <div>
+                                                    <div class="row g-gs">
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                                    <label class="form-label">کد بورسی دارایی</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="code" value="" placeholder="کد بورسی" required>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                                    <label class="form-label">نوع معامله</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <select name="side" class="form-select">
+                                                                            <option value="buy">خرید</option>
+                                                                            <option value="sell">فروش</option>
+                                                                        </select>
+                                                                    </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="card-inner p-0 border-top">
-                                                        <div>
-                                                          <canvas id="myChart"></canvas>
-                                                        </div>
-                                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                                        <script>
-                                                          const labels = [
-                                                                            {%for i in Get_Trade_History_chart%}{{i[0]}},{%endfor%}
-                                                              ];
-
-                                                          const data = {
-                                                            labels: labels,
-                                                            datasets: [{
-                                                              label: 'تغییرات درصد سود نسب به روز ها',
-                                                              backgroundColor: 'rgb(255, 99, 132)',
-                                                              borderColor: 'rgb(255, 99, 132)',
-                                                              data: [{%for i in Get_Trade_History_chart%}{{i[1]}},{%endfor%}],
-                                                            }]
-                                                          };
-
-                                                          const config = {
-                                                            type: 'line',
-                                                            data: data,
-                                                            options: {}
-                                                          };
-                                                        </script>
-                                                        <script>
-                                                          const myChart = new Chart(
-                                                            document.getElementById('myChart'),
-                                                            config
-                                                          );
-                                                        </script>
-                                                    </div>
                                                 </div>
+                                                <br>
+                                                <input class="btn btn-success" type="submit" value="ثبت نهایی" >
+                                                <br>
+                                                <hr>
+                                            </form>
                                                 <!-- .card -->
                                             </div>
                                             <!-- .col -->
@@ -103,11 +110,11 @@
                                 </div>
                             </div>
                         </div>
+
 </div>
 {% endblock %}
-
 {% block menu %}
-                       <div class="nk-sidebar-content">
+                   <div class="nk-sidebar-content">
                             <div class="nk-sidebar-menu" data-simplebar>
                                 <ul class="nk-menu">
 
@@ -144,6 +151,12 @@
                             <!-- .nk-sidebar-menu -->
                         </div>
 {% endblock %}
+
 {% block notification %}
+
+
+{% endblock %}
+{% block script %}
+
 
 {% endblock %}
