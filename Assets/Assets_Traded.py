@@ -88,14 +88,20 @@ def Trade_Update():
         list_trade = Get_Trade_History()
         for i in list_trade:
             price_overview = Get_Symbol_History(i[1])
+            '''
             if i[3] == 'buy':
                 profit = price_overview[0]['close'] - i[4]
             else:
                 profit = i[4] - price_overview[0]['close']
-            if profit != i[5]:
-                sql_update_query = """Update events set profit = %s where id = %s"""
+            '''
+            if i[3] == 'buy':
+                profit = price_overview[0]['close'] - price_overview[day_ago]['close']
+            else:
+                profit = price_overview[day_ago]['close'] - price_overview[0]['close']
+            if profit != i[5] or i[4] != price_overview[day_ago]['close']:
+                sql_update_query = """Update events set profit = %s, price_open = %s where id = %s"""
                 # print(str(data[5]))
-                input_data = (profit, i[0],)
+                input_data = (profit, i[4], i[0],)
                 cursor.execute(sql_update_query, input_data)
                 connection.commit()
                 print(f"Record Updated successfully {i[0]}")
@@ -111,6 +117,6 @@ def Trade_Update():
             connection.close()
             print("MySQL connection is closed")
 #Get_Trade_History()
-Trade_Update()
+#Trade_Update()
 #Insert_Trade_History(symbol='14079693677610396', side='sell')
 #Get_Symbol_History('14079693677610396')
