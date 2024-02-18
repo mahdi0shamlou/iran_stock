@@ -116,6 +116,25 @@ def Trade_Update():
             cursor.close()
             connection.close()
             print("MySQL connection is closed")
+def Trade_Delet(id):
+    try:
+        connection = mysql.connector.connect(host="localhost",
+                                             user='root',
+                                             password='ya mahdi',
+                                             database="iran_socket")
+        cursor = connection.cursor()
+        # Delete a record
+        sql_Delete_query = """Delete from events where id = %s"""
+        cursor.execute(sql_Delete_query, (id,))
+        connection.commit()
+        print('number of rows deleted', cursor.rowcount)
+    except mysql.connector.Error as error:
+        print("Failed to delete record from table: {}".format(error))
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
 #Get_Trade_History()
 #Trade_Update()
 #Insert_Trade_History(symbol='14079693677610396', side='sell')
