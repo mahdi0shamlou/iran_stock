@@ -126,26 +126,71 @@
                                             <!-- .col -->
                                             <div class="col-md-6 col-xxl-4">
                                                 <div class="card card-bordered card-full">
-                                                    <div class="card-inner border-bottom">
+                                                    <div class="card-inner">
                                                         <div class="card-title-group">
                                                             <div class="card-title">
-                                                                <h6 class="title">دارایی ها محبوب</h6>
-                                                            </div>
-                                                            <div class="card-tools">
-                                                                <ul class="card-tools-nav">
-                                                                    <!--
-                                                                    <li>
-                                                                        <a href="#"><span>لغو</span></a>
-                                                                    </li>
-                                                                    <li class="active">
-                                                                        <a href="#"><span>همه</span></a>
-                                                                    </li>-->
-                                                                </ul>
+                                                                <h6 class="title">
+                                                                    <span class="me-2">معاملات محبوب</span>
+
+                                                                </h6>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <ul class="nk-activity">
-                                                    </ul>
+
+                                                    <div class="card-inner p-0 border-top">
+                                                        <div class="nk-tb-list nk-tb-orders">
+                                                            <div class="nk-tb-item nk-tb-head">
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <span>نام دارایی</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span>قیمت ورود</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span>قیمت فعلی</span>
+                                                                </div>
+                                                                <div class="nk-tb-col"><span>درصد تغییرات</span></div>
+                                                                <div class="nk-tb-col"><span>&nbsp;</span></div>
+                                                            </div>
+                                                            {%for i in Get_Favorit_Trade_History_list%}
+                                                            <div class="nk-tb-item">
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-lead"><a class="badge badge-sm badge-dim bg-outline-info d-none d-md-inline-flex" href="/Home/Trade?P_ID={{i[0]}}">{{i[1]}}</a></span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <div class="user-card">
+                                                                        <div class="user-name">
+                                                                            <span class="tb-lead">{{i[6]}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span class="tb-sub">{{i[7]}}</span>
+                                                                </div>
+
+                                                                {%if i[5] < 0%}
+                                                                    <div class="nk-tb-col">
+                                                                        <span class="tb-sub"><span class="badge rounded-pill bg-danger">{{i[5]}}</span></span>
+                                                                    </div>
+                                                                {%else%}
+                                                                    <div class="nk-tb-col">
+                                                                        <span class="tb-sub"><span class="badge rounded-pill bg-success">{{i[5]}}</span></span>
+                                                                    </div>
+                                                                {%endif%}
+                                                                <div class="nk-tb-col nk-tb-col-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                                                            <ul class="link-list-plain">
+                                                                                <li><a href="/Home/Trade_charts?P_ID={{i[0]}}"><em class="icon ni ni-bar-chart-alt"></em><span>نمودار</span></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {%endfor%}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <!-- .card -->
                                             </div>

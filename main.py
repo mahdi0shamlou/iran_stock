@@ -4,6 +4,7 @@ from datetime import timedelta
 from Login.login import Check_login
 from Assets.Assets_Traded import Get_Trade_History
 from Assets.Assets_Traded import Trade_Update, Trade_Delet, Trade_History_Chart, Insert_Trade_History
+from Assets.Assets_favorits import Get_favorit_trade
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -60,7 +61,8 @@ def App_main_page():
     else:
         path = session.get('Path')
         Get_Trade_History_list = Get_Trade_History()
-        return render_template("/Home/index.html", Get_Trade_History_list=Get_Trade_History_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        Get_Favorit_Trade_History_list = Get_favorit_trade()
+        return render_template("/Home/index.html", Get_Favorit_Trade_History_list=Get_Favorit_Trade_History_list, Get_Trade_History_list=Get_Trade_History_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
 
 @app.route("/Home/Trade_update", methods=["POST", "GET"])
 def App_Trade_update():
