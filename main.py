@@ -5,6 +5,7 @@ from Login.login import Check_login
 from Assets.Assets_Traded import Get_Trade_History
 from Assets.Assets_Traded import Trade_Update, Trade_Delet, Trade_History_Chart, Insert_Trade_History
 from Assets.Assets_favorits import Get_favorit_trade
+from Assets.Multi_chart import Get_multi_chart_one_trade, Get_multi_chart_multi_trade
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -110,8 +111,21 @@ def App_Trade_new():
             Insert_Trade_History(symbol=code, side=side)
             return redirect('/Home')
 
-@app.route("/Home/Trade_charts_multi", methods=["POST", "GET"])
-def App_Trade_charts_multi():
+@app.route("/Home/Trade_charts_multi_favorit_on_trade", methods=["POST", "GET"])
+def App_Trade_charts_multi_favorit_on_trade():
+    if not session.get("Username"):
+        return render_template("/Login/index.html")
+    else:
+        ids = request.args.get('P_ID')
+        Side = request.args.get('side')
+        if ids is None or Side is None:
+            return redirect('/Home')
+        else:
+            path = session.get('Path')
+            Get_Trade_History_chart = Get_multi_chart_one_trade(ids, Side)
+            return render_template("/Trade/multi_charts.html", Get_Trade_History_chart=Get_Trade_History_chart, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/Home/Trade_charts_multi_trade_on_favorits", methods=["POST", "GET"])
+def App_Trade_charts_multi_trade_on_favorits():
     if not session.get("Username"):
         return render_template("/Login/index.html")
     else:
@@ -120,7 +134,7 @@ def App_Trade_charts_multi():
             return redirect('/Home')
         else:
             path = session.get('Path')
-            Get_Trade_History_chart = Trade_History_Chart(ids)
+            Get_Trade_History_chart = Get_multi_chart_multi_trade(ids)
             return render_template("/Trade/multi_charts.html", Get_Trade_History_chart=Get_Trade_History_chart, user=session.get('Username'), pathmain=path, email=session.get('email'))
 
 #--------------------------------------------------------------------

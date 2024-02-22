@@ -62,8 +62,8 @@
                                                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                                         <script>
                                                           const labels = [
-                                                              {%for i in charts_list_data[0][1]%}
-                                                                  '{{i[3]}}',
+                                                              {%for i in Get_Trade_History_chart[0]%}
+                                                                  {{i[1]}},
                                                               {%endfor%}
                                                               ];
 
@@ -71,14 +71,12 @@
                                                             labels: labels,
                                                             datasets: [
 
-                                                            {%for i in charts_list_data%}
+                                                            {%for i in Get_Trade_History_chart%}
                                                                 {
-                                                                  label: '{{i[0][1]}}',
-                                                                  backgroundColor: 'rgb({{(i[0][0]*i[0][0]%255)}}, {{(i[0][0]*i[0][0]%255-50)}}, {{(i[0][0]*i[0][0]%255+10)}})',
-                                                                  borderColor: 'rgb({{(i[0][0]*i[0][0]%255)}}, {{(i[0][0]*i[0][0]%255-50)}}, {{(i[0][0]*i[0][0]%255+10)}})',
+                                                                  label: '{{i[0][0]}}',
                                                                   data: [
-                                                                  {%for z in i[1]%}
-                                                                      {{z[4]/i[1][0][4]}},
+                                                                  {%for z in i%}
+                                                                      {{z[2]}},
                                                                   {%endfor%}
                                                                   ],
                                                                 },

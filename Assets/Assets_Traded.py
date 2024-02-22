@@ -2,7 +2,7 @@ import datetime
 from mysql.connector import connect, Error
 import mysql.connector
 from tsetmc_api.symbol import Symbol
-day_ago = 30
+day_ago = 29
 def Get_special_Trade(ids):
     try:
         connection = mysql.connector.connect(host="localhost",
@@ -138,7 +138,7 @@ def Trade_Update():
             if profit != i[5] or i[4] != price_overview[day_ago]['close']:
                 sql_update_query = """Update events set profit = %s, price_open = %s where id = %s"""
                 # print(str(data[5]))
-                input_data = (profit, i[4], i[0],)
+                input_data = (profit, price_overview[day_ago]['close'], i[0],)
                 cursor.execute(sql_update_query, input_data)
                 connection.commit()
                 print(f"Record Updated successfully {i[0]}")
@@ -173,6 +173,7 @@ def Trade_Delet(id):
             connection.close()
             print("MySQL connection is closed")
 def Trade_History_Chart(id):
+
     Trade_Update()
     Trade = Get_special_Trade(id)
     price_overview = Get_Symbol_History(Trade[0][1])
@@ -180,11 +181,11 @@ def Trade_History_Chart(id):
     if Trade[0][3] == 'buy':
         for i in range(day_ago,-1,-1):
             profits = price_overview[i]['close']-Trade[0][4]
-            profit_change_list.append([(day_ago-i), ((profits/Trade[0][4])*100)])
+            profit_change_list.append([Trade[0][1], (day_ago-i), ((profits/Trade[0][4])*100)])
     else:
-        for i in range(day_ago,0,-1):
+        for i in range(day_ago,-1,-1):
             profits = Trade[0][4] - price_overview[i]['close']
-            profit_change_list.append([(day_ago-i), ((profits/Trade[0][4])*100)])
+            profit_change_list.append([Trade[0][1], (day_ago-i), ((profits/Trade[0][4])*100)])
     return profit_change_list
 
 #Trade_History_Chart(10)
