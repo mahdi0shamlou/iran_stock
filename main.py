@@ -135,6 +135,7 @@ def App_Trade_charts_multi_trade_on_favorits():
         else:
             path = session.get('Path')
             Get_Trade_History_chart = Get_multi_chart_multi_trade(ids)
+            print(Get_Trade_History_chart)
             return render_template("/Trade/multi_charts.html", Get_Trade_History_chart=Get_Trade_History_chart, user=session.get('Username'), pathmain=path, email=session.get('email'))
 
 #--------------------------------------------------------------------
