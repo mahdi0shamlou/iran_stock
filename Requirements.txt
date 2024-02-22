@@ -3,3 +3,5 @@ pandas
 numpy
 tsetmc-api
 mysql-connector-python
+yfinance
+flask_session
