@@ -1,0 +1,162 @@
+{% extends './base/base.html' %}
+{% block bodys %}
+
+<div class="nk-content">
+    <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-block-head nk-block-head-sm">
+                                        <div class="nk-block-between">
+                                            <div class="nk-block-head-content">
+                                                <h3 class="nk-block-title page-title">
+                                                   معامله جدید
+                                                </h3>
+                                                <div class="nk-block-des text-soft">
+                                                    <p>{{user}}  </p>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                            <div class="nk-block-head-content">
+                                                <div class="toggle-wrap nk-block-tools-toggle">
+                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                                        <ul class="nk-block-tools g-3">
+                                                            <li>
+                                                                <div class="dropdown">
+                                                                    <!--
+                                                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown">
+                                                                        <em class="d-none d-sm-inline icon ni ni-calender-date"></em><span>30 روز <span class="d-none d-md-inline">گذشته</span></span>
+                                                                        <em class="dd-indc icon ni ni-chevron-right"></em>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <ul class="link-list-opt no-bdr">
+                                                                            <li>
+                                                                                <a href="#"><span>30 روز گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>6 ماه گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>1 سال گذشته</span></a>
+                                                                            </li>
+                                                                        </ul>
+
+                                                                    </div>
+                                                                    -->
+                                                                </div>
+                                                            </li>
+                                                            <!--
+                                                            <li class="nk-block-tools-opt">
+                                                                <a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>گزارش ها</span></a>
+                                                            </li>
+                                                            -->
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                        </div>
+                                        <!-- .nk-block-between -->
+                                    </div>
+                                    <!-- .nk-block-head -->
+                                    <div class="nk-block">
+                                        <div class="row g-gs">
+
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+                                            <div class="col-xxl-8">
+
+                                            <form class="form-group" method="get" action="/Home/Add_New_Trade_F">
+                                                 <div>
+                                                    <div class="row g-gs">
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                                    <label class="form-label">کد یاهو</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="code" value="" placeholder="کد یاهو" required>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                                    <label class="form-label">نام دارایی</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="name" value="" placeholder="نام دارايي" required>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <input class="btn btn-success" type="submit" value="ثبت نهایی" >
+                                                <br>
+                                                <hr>
+                                            </form>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+                                        </div>
+                                        <!-- .row -->
+                                    </div>
+                                    <!-- .nk-block -->
+                                </div>
+                            </div>
+                        </div>
+
+</div>
+{% endblock %}
+{% block menu %}
+                   <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-menu" data-simplebar>
+                                <ul class="nk-menu">
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title text-primary-alt">
+                                            منو
+                                        </h6>
+                                    </li>
+                                    <!-- .nk-menu-heading -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/Home/Trade" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
+                                            <span class="nk-menu-text">معاملات</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/Home/Add_New_Trade" class="nk-menu-link"><span class="nk-menu-text">معامله جدید</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/Home/Add_New_F" class="nk-menu-link"><span class="nk-menu-text">معامله محبوب جدید</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                </ul>
+                                <!-- .nk-menu -->
+                            </div>
+                            <!-- .nk-sidebar-menu -->
+                        </div>
+{% endblock %}
+
+{% block notification %}
+
+
+{% endblock %}
+{% block script %}
+
+
+{% endblock %}

@@ -6,6 +6,7 @@ from Assets.Assets_Traded import Get_Trade_History
 from Assets.Assets_Traded import Trade_Update, Trade_Delet, Trade_History_Chart, Insert_Trade_History
 from Assets.Assets_favorits import Get_favorit_trade
 from Assets.Multi_chart import Get_multi_chart_one_trade, Get_multi_chart_multi_trade
+from Assets.Assets_favorits import Insert_Trade_History_F
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -137,7 +138,31 @@ def App_Trade_charts_multi_trade_on_favorits():
             Get_Trade_History_chart = Get_multi_chart_multi_trade(ids)
             print(Get_Trade_History_chart)
             return render_template("/Trade/multi_charts.html", Get_Trade_History_chart=Get_Trade_History_chart, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/Home/Add_New_Trade_F", methods=["POST", "GET"])
+def App_Trade_new_F():
+    if not session.get("Username"):
+        return render_template("/Login/index.html")
+    else:
+        code = request.args.get('code')
+        name = request.args.get('name')
+        if code is None or name is None:
+            path = session.get('Path')
+            return render_template("/Trade/Add_new_F.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
 
+            Insert_Trade_History_F(code, name)
+            return redirect('/Home')
+@app.route("/Home/Delet", methods=["POST", "GET"])
+def App_Trade_delet():
+    if not session.get("Username"):
+        return render_template("/Login/index.html")
+    else:
+        ids = request.args.get('P_ID')
+        if ids is None:
+            return redirect('/Home')
+        else:
+            Trade_Delet(ids)
+            return redirect('/Home')
 #--------------------------------------------------------------------
 ########################## End Home
 #--------------------------------------------------------------------

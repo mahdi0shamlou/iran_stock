@@ -155,7 +155,7 @@
                                                             {%for i in Get_Favorit_Trade_History_list%}
                                                             <div class="nk-tb-item">
                                                                 <div class="nk-tb-col">
-                                                                    <span class="tb-lead"><a class="badge badge-sm badge-dim bg-outline-info d-none d-md-inline-flex" href="/Home/Trade?P_ID={{i[0]}}">{{i[1]}}</a></span>
+                                                                    <span class="tb-lead"><a class="badge badge-sm badge-dim bg-outline-info d-none d-md-inline-flex" href="/Home/Trade_charts_multi_trade_on_favorits?P_ID={{i[8]}}">{{i[1]}}</a></span>
                                                                 </div>
                                                                 <div class="nk-tb-col tb-col-sm">
                                                                     <div class="user-card">
@@ -227,6 +227,9 @@
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
                                                 <a href="/Home/Add_New_Trade" class="nk-menu-link"><span class="nk-menu-text">معامله جدید</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/Home/Add_New_Trade_F" class="nk-menu-link"><span class="nk-menu-text">معامله محبوب جدید</span></a>
                                             </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
