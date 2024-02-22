@@ -152,5 +152,24 @@ def Get_favorit_assets_limit_id(id):
             connection.close()
             print("MySQL connection is closed")
             return list_lab
+def Trade_Delet_F(ids):
+    try:
+        connection = mysql.connector.connect(host="localhost",
+                                             user='root',
+                                             password='ya mahdi',
+                                             database="iran_socket")
+        cursor = connection.cursor()
+        # Delete a record
+        sql_Delete_query = """Delete from F_trade where id = %s"""
+        cursor.execute(sql_Delete_query, (ids,))
+        connection.commit()
+        print('number of rows deleted', cursor.rowcount)
+    except mysql.connector.Error as error:
+        print("Failed to delete record from table: {}".format(error))
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
 #print(Chart_all_favorit_assets(30, 2))
 #Chart_all_favorit_assets(30, 'Buy')

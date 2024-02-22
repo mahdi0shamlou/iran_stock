@@ -6,7 +6,7 @@ from Assets.Assets_Traded import Get_Trade_History
 from Assets.Assets_Traded import Trade_Update, Trade_Delet, Trade_History_Chart, Insert_Trade_History
 from Assets.Assets_favorits import Get_favorit_trade
 from Assets.Multi_chart import Get_multi_chart_one_trade, Get_multi_chart_multi_trade
-from Assets.Assets_favorits import Insert_Trade_History_F
+from Assets.Assets_favorits import Insert_Trade_History_F, Trade_Delet_F
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -152,8 +152,8 @@ def App_Trade_new_F():
 
             Insert_Trade_History_F(code, name)
             return redirect('/Home')
-@app.route("/Home/Delet", methods=["POST", "GET"])
-def App_Trade_delet():
+@app.route("/Home/Delet_F", methods=["POST", "GET"])
+def App_Trade_delet_F():
     if not session.get("Username"):
         return render_template("/Login/index.html")
     else:
@@ -161,7 +161,7 @@ def App_Trade_delet():
         if ids is None:
             return redirect('/Home')
         else:
-            Trade_Delet(ids)
+            Trade_Delet_F(ids)
             return redirect('/Home')
 #--------------------------------------------------------------------
 ########################## End Home
