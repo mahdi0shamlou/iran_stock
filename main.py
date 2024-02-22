@@ -94,6 +94,7 @@ def App_Trade_charts():
             path = session.get('Path')
             Get_Trade_History_chart = Trade_History_Chart(ids)
             return render_template("/Trade/Chart.html", Get_Trade_History_chart=Get_Trade_History_chart, user=session.get('Username'), pathmain=path, email=session.get('email'))
+
 @app.route("/Home/Add_New_Trade", methods=["POST", "GET"])
 def App_Trade_new():
     if not session.get("Username"):
@@ -108,6 +109,19 @@ def App_Trade_new():
 
             Insert_Trade_History(symbol=code, side=side)
             return redirect('/Home')
+
+@app.route("/Home/Trade_charts_multi", methods=["POST", "GET"])
+def App_Trade_charts_multi():
+    if not session.get("Username"):
+        return render_template("/Login/index.html")
+    else:
+        ids = request.args.get('P_ID')
+        if ids is None:
+            return redirect('/Home')
+        else:
+            path = session.get('Path')
+            Get_Trade_History_chart = Trade_History_Chart(ids)
+            return render_template("/Trade/multi_charts.html", Get_Trade_History_chart=Get_Trade_History_chart, user=session.get('Username'), pathmain=path, email=session.get('email'))
 
 #--------------------------------------------------------------------
 ########################## End Home

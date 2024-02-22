@@ -1,0 +1,162 @@
+{% extends './base/base.html' %}
+{% block bodys %}
+
+                        <div class="nk-content">
+                            <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-block-head nk-block-head-sm">
+                                        <div class="nk-block-between">
+                                            <div class="nk-block-head-content">
+                                                <h3 class="nk-block-title page-title">
+                                                     {{user}}
+                                                </h3>
+                                                <div class="nk-block-des text-soft">
+                                                    <p> خوش اومدی </p>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                            <div class="nk-block-head-content">
+                                                <div class="toggle-wrap nk-block-tools-toggle">
+                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                                        <ul class="nk-block-tools g-3">
+                                                            <li>
+                                                                <div class="dropdown">
+
+                                                                </div>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                        </div>
+                                        <!-- .nk-block-between -->
+                                    </div>
+                                    <!-- .nk-block-head -->
+                                    <div class="nk-block">
+                                        <div class="row g-gs">
+
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+                                            <div class="col-xxl-12">
+                                                <div class="card card-bordered card-full">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">
+                                                                    <span class="me-2">نمودار تغیرات درصد سود</span>
+
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-inner p-0 border-top">
+                                                        <div>
+                                                          <canvas id="myChart"></canvas>
+                                                        </div>
+                                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                                        <script>
+                                                          const labels = [
+                                                              {%for i in charts_list_data[0][1]%}
+                                                                  '{{i[3]}}',
+                                                              {%endfor%}
+                                                              ];
+
+                                                          const data = {
+                                                            labels: labels,
+                                                            datasets: [
+
+                                                            {%for i in charts_list_data%}
+                                                                {
+                                                                  label: '{{i[0][1]}}',
+                                                                  backgroundColor: 'rgb({{(i[0][0]*i[0][0]%255)}}, {{(i[0][0]*i[0][0]%255-50)}}, {{(i[0][0]*i[0][0]%255+10)}})',
+                                                                  borderColor: 'rgb({{(i[0][0]*i[0][0]%255)}}, {{(i[0][0]*i[0][0]%255-50)}}, {{(i[0][0]*i[0][0]%255+10)}})',
+                                                                  data: [
+                                                                  {%for z in i[1]%}
+                                                                      {{z[4]/i[1][0][4]}},
+                                                                  {%endfor%}
+                                                                  ],
+                                                                },
+                                                            {%endfor%}
+
+
+                                                            ]
+                                                          };
+
+                                                          const config = {
+                                                            type: 'line',
+                                                            data: data,
+                                                            options: {}
+                                                          };
+                                                        </script>
+                                                        <script>
+                                                          const myChart = new Chart(
+                                                            document.getElementById('myChart'),
+                                                            config
+                                                          );
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+                                        </div>
+                                        <!-- .row -->
+                                    </div>
+                                    <!-- .nk-block -->
+                                </div>
+                            </div>
+                        </div>
+</div>
+{% endblock %}
+
+{% block menu %}
+                       <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-menu" data-simplebar>
+                                <ul class="nk-menu">
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title text-primary-alt">
+                                            منو
+                                        </h6>
+                                    </li>
+                                    <!-- .nk-menu-heading -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/Home/Trade" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
+                                            <span class="nk-menu-text">معاملات</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/Home/Add_New_Trade" class="nk-menu-link"><span class="nk-menu-text">معامله جدید</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                </ul>
+                                <!-- .nk-menu -->
+                            </div>
+                            <!-- .nk-sidebar-menu -->
+                        </div>
+{% endblock %}
+{% block notification %}
+
+{% endblock %}
